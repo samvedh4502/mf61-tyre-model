@@ -74,3 +74,4 @@ The notebooks in `notebooks/` walk through each step, from reading the `.tir` fi
 - `data/sample.tir` is from the [ExternData](https://github.com/modelica-3rdparty/ExternData) project, BSD 2-Clause licence (see `data/LICENSE_sample_tir.txt`). Its header labels the tyre 225/50R17, but its dimensions describe a 205/60R15.
 - Reference outputs in `data/mf61_reference.csv` were generated with the [Magic Formula Tyre Library](https://github.com/teasit/magic-formula-tyre-library) run in GNU Octave. No code from that library is included here.
 - Model equations follow H. B. Pacejka, *Tire and Vehicle Dynamics*, 3rd edition, Butterworth-Heinemann, 2012.
+- This project's own code is released under the MIT licence (see `LICENSE`).
