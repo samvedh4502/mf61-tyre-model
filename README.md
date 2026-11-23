@@ -75,3 +75,7 @@ The notebooks in `notebooks/` walk through each step, from reading the `.tir` fi
 - Reference outputs in `data/mf61_reference.csv` were generated with the [Magic Formula Tyre Library](https://github.com/teasit/magic-formula-tyre-library) run in GNU Octave. No code from that library is included here.
 - Model equations follow H. B. Pacejka, *Tire and Vehicle Dynamics*, 3rd edition, Butterworth-Heinemann, 2012.
 - This project's own code is released under the MIT licence (see `LICENSE`).
+
+
+
+![tests](https://github.com/samvedh4502/mf61-tyre-model/actions/workflows/tests.yml/badge.svg)
