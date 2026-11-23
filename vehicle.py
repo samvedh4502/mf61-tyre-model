@@ -3,17 +3,26 @@ import numpy as np
 import tyre_model as tm
 
 
-def axle_peak_force(tyre, Fz_static, dFz):
+def axle_peak_force(tyre, Fz_static, dFz, turn="right"):
     alpha = np.radians(np.linspace(0, 20, 2001))
+    if turn == "left":
+        alpha = -alpha  # left turn: negative slip angles, force to the left
+
     Fz_outer = min(Fz_static + dFz, 2 * Fz_static)
     Fz_inner = Fz_static - dFz
+    if turn == "right":
+        Fz_left, Fz_right = Fz_outer, Fz_inner  # turning right, the left wheel is outside
+    else:
+        Fz_left, Fz_right = Fz_inner, Fz_outer
 
-    Fy_axle = -tm.lateral_force(tyre, alpha, Fz_outer)
-    if Fz_inner > 0:
-        Fy_axle = Fy_axle - tm.lateral_force(tyre, alpha, Fz_inner)
+    Fy_axle = np.zeros_like(alpha)
+    if Fz_left > 0:
+        Fy_axle = Fy_axle + tm.lateral_force(tyre, alpha, Fz_left)
+    if Fz_right > 0:
+        Fy_axle = Fy_axle + tm.lateral_force_right(tyre, alpha, Fz_right)
 
-    i = np.argmax(Fy_axle)
-    return Fy_axle[i], np.degrees(alpha[i])
+    i = np.argmax(np.abs(Fy_axle))
+    return abs(Fy_axle[i]), abs(np.degrees(alpha[i]))
 
 
 def car_balance(tyre, mass, front_weight_share, cg_height, track,

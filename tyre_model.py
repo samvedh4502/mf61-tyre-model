@@ -151,3 +151,7 @@ def aligning_moment(tyre, alpha, Fz, kappa=0.0, gamma=0.0):
     s = R0 * (ali["SSZ1"] + ali["SSZ2"] * (Fy / Fz0) + (ali["SSZ3"] + ali["SSZ4"] * dfz) * g)
 
     return -trail * Fy_prime + Mzr + s * Fx, trail
+
+def lateral_force_right(tyre, alpha, Fz, gamma=0.0):
+    # the right-hand tyre is the mirror image of the left-hand tyre in the file
+    return -lateral_force(tyre, -alpha, Fz, -gamma)

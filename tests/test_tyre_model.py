@@ -53,3 +53,11 @@ def test_known_values():
     Mz, trail = tm.aligning_moment(TYRE, np.radians(3), 4000)
     assert Mz == pytest.approx(44.70, abs=0.01)
     assert trail == pytest.approx(0.01834, abs=1e-5)
+
+
+
+def test_right_tyre_is_mirror_image():
+    alpha = np.radians(np.linspace(-12, 12, 49))
+    left = tm.lateral_force(TYRE, -alpha, 4000, np.radians(-2))
+    right = tm.lateral_force_right(TYRE, alpha, 4000, np.radians(2))
+    assert np.allclose(right, -left)
