@@ -1,5 +1,7 @@
 # MF 6.1 tyre model in Python
 
+![tests](https://github.com/samvedh4502/mf61-tyre-model/actions/workflows/tests.yml/badge.svg)
+
 A from-scratch Python implementation of the Pacejka Magic Formula 6.1 tyre model, validated against an independent MF 6.1 implementation and used for vehicle balance and braking studies.
 
 ## What it does
@@ -78,4 +80,3 @@ The notebooks in `notebooks/` walk through each step, from reading the `.tir` fi
 
 
 
-![tests](https://github.com/samvedh4502/mf61-tyre-model/actions/workflows/tests.yml/badge.svg)
