@@ -84,11 +84,11 @@ def combined_force(tyre, kappa, alpha, Fz, gamma=0.0):
     Fy0 = lateral_force(tyre, alpha, Fz, gamma)
 
     Bxa = lon["RBX1"] * np.cos(np.arctan(lon["RBX2"] * kappa))
-    Exa = min(lon["REX1"] + lon["REX2"] * dfz, 1.0)
+    Exa = np.minimum(lon["REX1"] + lon["REX2"] * dfz, 1.0)
     Gx = weight(np.tan(alpha), Bxa, lon["RCX1"], Exa, lon["RHX1"])
     
     Byk = lat["RBY1"] * np.cos(np.arctan(lat["RBY2"] * (np.tan(alpha) - lat["RBY3"])))
-    Eyk = min(lat["REY1"] + lat["REY2"] * dfz, 1.0)
+    Eyk = np.minimum(lat["REY1"] + lat["REY2"] * dfz, 1.0)
     SHyk = lat["RHY1"] + lat["RHY2"] * dfz
     Gy = weight(kappa, Byk, lat["RCY1"], Eyk, SHyk)
 
