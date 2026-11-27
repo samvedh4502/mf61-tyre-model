@@ -25,3 +25,27 @@ def fit(tyre, section, names, p0, predict, measured):
     corr = cov / np.outer(std, std)
     rms = np.sqrt(np.mean(result.fun**2))
     return result.x, std, corr, rms
+
+
+
+def random_starts(p0, spread, n, seed=0):
+    rng = np.random.default_rng(seed)
+    p0 = np.asarray(p0, dtype=float)
+    spread = np.asarray(spread, dtype=float)
+    starts = [p0]
+    for _ in range(n - 1):
+        starts.append(p0 + rng.uniform(-1, 1, size=p0.size) * spread)
+    return starts
+
+
+def fit_multistart(tyre, section, names, starts, predict, measured):
+    results = []
+    for start in starts:
+        try:
+            results.append(fit(tyre, section, names, start, predict, measured))
+        except (np.linalg.LinAlgError, ValueError):
+            continue  # a start that fails is skipped
+    rms_values = np.array([r[3] for r in results])
+    best = results[int(np.argmin(rms_values))]
+    n_agree = int(np.sum(rms_values <= best[3] * 1.001 + 1e-9))
+    return best, n_agree, rms_values
