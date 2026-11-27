@@ -29,7 +29,7 @@ This is validation against another implementation, not against measured tyre dat
 
 ![Lateral force against slip angle](figures/lateral_force.png)
 
-Grip grows with load but less than in proportion: peak lateral force per newton of load falls from 0.91 at 2000 N to 0.81 at 8000 N.
+Grip grows with load but less than in proportion: the peak friction coefficient D/Fz falls from 0.91 at 2000 N to 0.81 at 8000 N.
 
 ![Friction ellipse](figures/friction_ellipse.png)
 
@@ -39,7 +39,7 @@ Braking or driving reduces the lateral force available, and a locked wheel keeps
 
 Weight transfer in a corner costs axle grip (about 9% at 3500 N on an 8000 N axle), which is why roll stiffness distribution sets a car's balance. Other findings from the notebooks:
 
-- A balanced car reaches 0.851 g against 0.838 g with 60% of the weight transfer at the front
+- A balanced car reaches 0.840 g, against 0.829 g with 60% of the weight transfer at the front
 - The best braking slip is about 12% at every load; a locked wheel keeps only about 72% of peak braking force
 
 ## Getting started
@@ -70,7 +70,7 @@ The notebooks in `notebooks/` walk through each step, from reading the `.tir` fi
 - Slip angle input as tan(alpha), following MF 6.1
 - Nominal inflation pressure, so pressure effects are inactive
 - Steady state only: no relaxation length or transient effects
-
+- Right-hand tyres are modelled as the mirror image of the left-hand tyre in the file, so the car behaves the same in left and right turns
 ## Credits
 
 - `data/sample.tir` is from the [ExternData](https://github.com/modelica-3rdparty/ExternData) project, BSD 2-Clause licence (see `data/LICENSE_sample_tir.txt`). Its header labels the tyre 225/50R17, but its dimensions describe a 205/60R15.
